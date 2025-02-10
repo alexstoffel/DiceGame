@@ -71,7 +71,7 @@ public class Die
         if (player.getName().equals("Robot")){
             g.drawImage(diceImages[mostRecentRoll - 1], 150 * whichDie, 100, 50, 50, window);
         }else{
-            g.drawImage(diceImages[mostRecentRoll - 1], 150 * whichDie, 100, 50, 50, window);
+            g.drawImage(diceImages[mostRecentRoll - 1], 150 * whichDie, 400, 50, 50, window);
         }
     }
 

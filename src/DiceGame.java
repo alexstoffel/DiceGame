@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
 public class DiceGame {
-    private int round;
     private Scanner input;
     private int diceSum;
     private int targetRoll;
     private DiceGameView window;
+    public int state;
 
     // Initilaize players
     private Player player1;
@@ -21,10 +21,12 @@ public class DiceGame {
         window = new DiceGameView(this);
 
         // Initialize all variable
-        round = 0;
         diceSum = 0;
         player1 = new Player("Alex");
         robot = new Player("Robot");
+        playerDie = new Die[2];
+        robotDie = new Die[2];
+        state = 0;
 
         for (int i = 0; i < 2; i++){
             playerDie[i] = new Die(window, player1, i + 1);
@@ -33,8 +35,8 @@ public class DiceGame {
         input = new Scanner(System.in);
     }
 
-    public static void printInstructions(){
-        System.out.println("The goal of Chicago is to roll every possible number" +
+    public static String getInstructions(){
+        return ("The goal of Chicago is to roll every possible number" +
                 " combination that can be made with two dice. There are 11" +
                 " possible combinations, and you'll have 11 chances to roll." +
                 " Each round has a target combination, which starts at 2 and" +
@@ -81,13 +83,16 @@ public class DiceGame {
 
     }
     public void play(){
+        window.repaint();
         // For loop for each round
         for (int i = 2; i < 13; i++){
             targetRoll = i;
+            window.repaint();
             // Player Turn
             this.printTarget();
             // Check if the dice is equal to the round
             if(input.nextLine().equals("roll")){
+                state = 1;
                 diceSum = playerDie[0].roll() + playerDie[1].roll();
                 if (this.checkDie() == true){
                     // update player score
@@ -112,7 +117,7 @@ public class DiceGame {
     public static void main(String[] args){
         // Initialize game
         DiceGame main = new DiceGame();
-        DiceGame.printInstructions();
+        System.out.println(DiceGame.getInstructions());
         main.play();
         // This will reference the DiceGame class for each round
         // Now, check for the win
@@ -121,5 +126,23 @@ public class DiceGame {
     // Getters and setters
     public int getTargetRoll(){
         return targetRoll;
+    }
+
+    // Getting the players
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getRobot() {
+        return robot;
+    }
+
+    public Die[] getPlayerDie() {
+        return playerDie;
+    }
+
+    public Die[] getRobotDie() {
+        return robotDie;
     }
 }

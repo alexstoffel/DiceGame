@@ -3,6 +3,7 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class DiceGameView extends JFrame {
     private DiceGame game;
@@ -41,7 +42,27 @@ public class DiceGameView extends JFrame {
         // Printing out all the numbers
         g.setFont(new Font("arial", Font.PLAIN, 25));
         g.setColor(Color.RED);
-        g.drawString("Target Roll:" +  Integer.toString(game.getTargetRoll()), 300, 250);
+
+        // Instructions page
+        if (game.state == 0){
+            g.drawString(DiceGame.getInstructions(), 50, 50);
+        }else if (game.state == 1){
+            // Target Roll
+            g.drawString("Target Roll:" +  Integer.toString(game.getTargetRoll()), 300, 250);
+
+            // Each of their points
+            g.drawString(game.getPlayer1().getName() + ": " + Integer.toString(game.getPlayer1().getScore()), 400, 450);
+            g.drawString("Robot: " + Integer.toString(game.getRobot().getScore()), 350, 50);
+
+            // Drawing the dice
+            for (int i = 0; i < 2; i++){
+                game.getRobotDie()[i].draw(g);
+                game.getPlayerDie()[i].draw(g);
+            }
+        }
+
+
+
 
 
 
