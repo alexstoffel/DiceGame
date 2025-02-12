@@ -45,7 +45,18 @@ public class DiceGameView extends JFrame {
 
         // Instructions page
         if (game.state == 0){
-            g.drawString(DiceGame.getInstructions(), 50, 50);
+            // 39 wide
+            String instructions = DiceGame.getInstructions();
+            int num;
+            String string;
+
+            for (int i = 0; i < instructions.length() / 39 + 1; i++){
+                if (i <= 11){
+                    g.drawString(instructions.substring(i * 39,  (i + 1) * 39), 50, 50 + 30 * i);
+                }else{
+                    g.drawString(instructions.substring(i * 39), 50, 50 + 30 * i);
+                }
+            }
         }else if (game.state == 1){
             // Target Roll
             g.drawString("Target Roll:" +  Integer.toString(game.getTargetRoll()), 300, 250);
@@ -60,12 +71,6 @@ public class DiceGameView extends JFrame {
                 game.getPlayerDie()[i].draw(g);
             }
         }
-
-
-
-
-
-
     }
 
     // Returning the die

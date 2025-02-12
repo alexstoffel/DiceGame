@@ -43,7 +43,8 @@ public class DiceGame {
                 " goes up to 12 in the same sequence. For example, if you are" +
                 " in Round 8, the target score is 9. If a player rolls any" +
                 " combination that adds up to 9, they will score that number." +
-                " If they do not, they'll earn zero points for that round. type");
+                " If they do not, they'll earn zero points for that round. type" +
+                "'roll' to start the game");
     }
 
     // This will check if the die roll was correct
