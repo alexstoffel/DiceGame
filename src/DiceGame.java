@@ -3,6 +3,8 @@ import java.util.Scanner;
 public class DiceGame {
     private Scanner input;
     private int diceSum;
+    private int playerMostRecentRoll;
+    private int robotMostRecentRoll;
     private int targetRoll;
     private DiceGameView window;
     public int state;
@@ -22,6 +24,8 @@ public class DiceGame {
 
         // Initialize all variable
         diceSum = 0;
+        playerMostRecentRoll = 0;
+        robotMostRecentRoll = 0;
         player1 = new Player("Alex");
         robot = new Player("Robot");
         playerDie = new Die[2];
@@ -76,12 +80,15 @@ public class DiceGame {
         // Ending the game
         if (playerScore > robotScore){
             System.out.println("\nCongrats Alex Wins!");
+            state = 2;
         }else if (robotScore > playerScore){
             System.out.println("\n Robot Wins!");
+            state = 3;
         }else{
             System.out.println("\nTie!");
+            state = 4;
         }
-
+        window.repaint();
     }
     public void play(){
         window.repaint();
@@ -95,6 +102,7 @@ public class DiceGame {
             if(input.nextLine().equals("roll")){
                 state = 1;
                 diceSum = playerDie[0].roll() + playerDie[1].roll();
+                playerMostRecentRoll = diceSum;
                 if (this.checkDie() == true){
                     // update player score
                     player1.updateScore(targetRoll);
@@ -105,6 +113,7 @@ public class DiceGame {
             }
             // Play out the robots turn
             diceSum = robotDie[0].roll() + robotDie[1].roll();
+            robotMostRecentRoll = diceSum;
             if (this.checkDie() == true){
                 // update Robot score
                 robot.updateScore(targetRoll);
@@ -145,5 +154,13 @@ public class DiceGame {
 
     public Die[] getRobotDie() {
         return robotDie;
+    }
+
+    public int getPlayerMostRecentRoll(){
+        return playerMostRecentRoll;
+    }
+
+    public int getRobotMostRecentRoll(){
+        return robotMostRecentRoll;
     }
 }

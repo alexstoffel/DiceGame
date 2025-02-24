@@ -41,14 +41,13 @@ public class DiceGameView extends JFrame {
 
         // Printing out all the numbers
         g.setFont(new Font("arial", Font.PLAIN, 25));
-        g.setColor(Color.RED);
+        g.setColor(Color.WHITE);
 
         // Instructions page
         if (game.state == 0){
-            // 39 wide
+            // Initialize variables for printing
             String instructions = DiceGame.getInstructions();
-            int num;
-            String string;
+            g.setColor(Color.white);
 
             for (int i = 0; i < instructions.length() / 39 + 1; i++){
                 if (i <= 11){
@@ -59,17 +58,38 @@ public class DiceGameView extends JFrame {
             }
         }else if (game.state == 1){
             // Target Roll
-            g.drawString("Target Roll:" +  Integer.toString(game.getTargetRoll()), 300, 250);
+            g.drawString("Target Roll:" +  game.getTargetRoll(), 300, 250);
 
             // Each of their points
-            g.drawString(game.getPlayer1().getName() + ": " + Integer.toString(game.getPlayer1().getScore()), 400, 450);
-            g.drawString("Robot: " + Integer.toString(game.getRobot().getScore()), 350, 50);
+            g.drawString(game.getPlayer1().getName() + ": " + game.getPlayer1().getScore(), 400, 450);
+            g.drawString("Robot: " + (game.getRobot().getScore()), 350, 50);
+
+            // Last round summary box
+            g.setColor(Color.white);
+            g.drawRect(20, 40, 185, 50);
+            g.drawRect(20, 340, 185, 50);
+            g.setFont(new Font("arial", Font.PLAIN, 15));
+            g.drawString("Last Round Target Roll: " + (game.getTargetRoll() - 1), 25, 55);
+            g.drawString("Last Round Target Roll: " + (game.getTargetRoll() - 1), 25, 355);
+            g.drawString("Last Round Roll: " + game.getRobotMostRecentRoll(), 25, 85);
+            g.drawString("Last Round Roll: " + game.getPlayerMostRecentRoll(), 25, 385);
+
+
 
             // Drawing the dice
             for (int i = 0; i < 2; i++){
                 game.getRobotDie()[i].draw(g);
                 game.getPlayerDie()[i].draw(g);
             }
+        }else if(game.state == 2){
+            g.setFont(new Font("arial", Font.PLAIN, 30));
+            g.drawString(game.getPlayer1().getName() + "Wins!", 5, 250);
+        }else if(game.state == 3){
+            g.setFont(new Font("arial", Font.PLAIN, 30));
+            g.drawString("Computer Wins!", 5, 250);
+        }else if(game.state == 4){
+            g.setFont(new Font("arial", Font.PLAIN, 30));
+            g.drawString("Tie!", 5, 250);
         }
     }
 
