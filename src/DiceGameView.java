@@ -81,7 +81,7 @@ public class DiceGameView extends JFrame {
             }
         }else if(game.state == 2){
             g.setFont(new Font("arial", Font.PLAIN, 30));
-            g.drawString(game.getPlayer1().getName() + "Wins!", 5, 250);
+            g.drawString(game.getPlayer1().getName() + " Wins!", 5, 250);
         }else if(game.state == 3){
             g.setFont(new Font("arial", Font.PLAIN, 30));
             g.drawString("Computer Wins!", 5, 250);
