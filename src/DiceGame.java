@@ -9,7 +9,7 @@ public class DiceGame {
     private DiceGameView window;
     public int state;
 
-    // Initilaize players
+    // Initialize players
     private Player player1;
     private Player robot;
 

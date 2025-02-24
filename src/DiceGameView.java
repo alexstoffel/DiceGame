@@ -28,7 +28,7 @@ public class DiceGameView extends JFrame {
 
 
 
-        // Setup the window and the buffer strategy.
+        // Set up the window and the buffer strategy.
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle("Chicago Game");
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -73,8 +73,6 @@ public class DiceGameView extends JFrame {
             g.drawString("Last Round Target Roll: " + (game.getTargetRoll() - 1), 25, 355);
             g.drawString("Last Round Roll: " + game.getRobotMostRecentRoll(), 25, 85);
             g.drawString("Last Round Roll: " + game.getPlayerMostRecentRoll(), 25, 385);
-
-
 
             // Drawing the dice
             for (int i = 0; i < 2; i++){

@@ -10,7 +10,7 @@ public class Die
     private Image[] diceImages;
     private int mostRecentRoll;
 
-    // Contructors
+    // Constructors
     public Die(int numSides) {
         if (numSides < 2){
             this.numSides = 6;
@@ -63,7 +63,7 @@ public class Die
 
     /**
      * Returns a String in the following form:
-     * "This is a n-sided die."
+     * "This is an n-sided die."
      */
 
     // Drawing itself
