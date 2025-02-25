@@ -15,6 +15,7 @@ public class DiceGameView extends JFrame {
     // Creating constants
     private final int TEXT_START_POS = 25;
     private final int Y_TEXT_START = 50;
+    private final int WINDOW_CHAR_WIDTH = 39;
 
 
     // Constructor
@@ -72,11 +73,11 @@ public class DiceGameView extends JFrame {
         String instructions = DiceGame.getInstructions();
         g.setColor(Color.white);
 
-        for (int i = 0; i < instructions.length() / 39 + 1; i++){
+        for (int i = 0; i < instructions.length() / WINDOW_CHAR_WIDTH + 1; i++){
             if (i <= 11){
-                g.drawString(instructions.substring(i * 39,  (i + 1) * 39), TEXT_START_POS, Y_TEXT_START + 30 * i);
+                g.drawString(instructions.substring(i * WINDOW_CHAR_WIDTH,  (i + 1) * WINDOW_CHAR_WIDTH), TEXT_START_POS, Y_TEXT_START + 30 * i);
             }else{
-                g.drawString(instructions.substring(i * 39), TEXT_START_POS, Y_TEXT_START + 30 * i);
+                g.drawString(instructions.substring(i * WINDOW_CHAR_WIDTH), TEXT_START_POS, Y_TEXT_START + 30 * i);
             }
         }
     }
