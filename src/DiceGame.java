@@ -1,3 +1,6 @@
+// Alex Stoffel
+// This is my main backend class
+
 import java.util.Scanner;
 
 public class DiceGame {
@@ -32,6 +35,7 @@ public class DiceGame {
         robotDie = new Die[2];
         state = 0;
 
+        // Initializing the dice for both players
         for (int i = 0; i < 2; i++){
             playerDie[i] = new Die(window, player1, i + 1);
             robotDie[i] = new Die(window, robot, i + 1);
@@ -61,7 +65,7 @@ public class DiceGame {
         }
     }
     public void printTarget(){
-        // print out the target Roll for each round
+        // Print out the target Roll for each round
         System.out.println("The target roll is " + targetRoll + ". Type"
                 + " 'roll' to roll the die!");
     }
